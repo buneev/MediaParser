@@ -11,13 +11,11 @@ from scrapyproject.helpers.help_func import *
 import json
 
 
-# CONSTANTS
-
-# main site page xpath
+# main page xpath
 ART_BLOCK = "//div[contains(@class, 'cell-list__item ')]"
 ART_URL = "//a/@href"
 
-# current article page xpath
+# article page xpath
 P_ART_BLOCK = "//div[@class='layout-article']"
 P_ART_CODE = "//@data-article-id"
 P_ART_TITLE = "//h1[@class='article__title']/text()"
@@ -65,8 +63,8 @@ class RiaSpider(ParseFunc):
     custom_settings = {
         'CONCURRENT_REQUESTS': 2,
         'CONCURRENT_REQUESTS_PER_DOMAIN': 2,
-        'DOWNLOAD_DELAY': 1.,
-        'DOWNLOAD_TIMEOUT': 50,
+        'DOWNLOAD_DELAY': 1.1,
+        'DOWNLOAD_TIMEOUT': 40,
     }
     start_urls = [
         "https://ria.ru/",

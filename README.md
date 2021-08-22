@@ -1,27 +1,40 @@
-## Парсер собирающий статьи с разных сайтов
+## Микросервис для парсинга новостных веб-ресурсов
 
 ### Описание
+Микросервис реализован на aiohttp и scrapy. Предназначен для парсинга новостных веб-ресурсов
 
-### Запуск
-docker-compose up -d
+### Запуск в docker
+1) docker build -t web_scraping_i .
+2) docker run --name web_scraping -p 5858:5858 -d --restart=always  web_scraping_i
+or
+2) docker run --name web_scraping -p 5858:5858 -it --rm -v /home/ivan/git/MediaParser/MediaParser/src/data:/code/src/data  web_scraping_i
+
+### Запуск локально
+* Запуск парсинга:
+scrapy crawl ria -o ../data/output.json
+
+* Запуск парсинга в debug (vscode):
+f5 run_debug.py 
+
 
 ### API
 
 | Endpoint        | HTTP Method | Result                  |
 |-----------------|-------------|-------------------------|
-| article/api     | GET         | Get all articles        |
-| article/api     | POST        | Add articles            |
-| article/api/:id | GET         | Get a single article    |
-| article/api/:id | PUT         | Update a single article |
-| article/api/:id | DELETE      | Delete a single article |
+| /run_parse      | POST        | Run web scraping        |
+
+Пример post запроса: {"spider_name": "ria", "make_import": false}
+
+Тело post запроса:
+* spider_name - имя паука (новостного сайта)
+* make_import - делать ли импорт по адресу: http://127.0.0.1:8000/article/api/ (репозиторий blog)
+
 
 ### Реализованно
-* Парсинг статей с главной страницы ria-новости, и отправка спарсенных данных
-на DRF api.
+* Запуск парсинга статей через endpoint
+* Парсинг статей с главной страницы "РИА новости" и отправка спарсенных данных на
+  DRF api (репозиторий blog)
 
 ### Планируется
-* спарсить прокси и закинуть их в redis
-* отображать / рассылать раз в неделю статьи с 3-5 новостных сайтов,
-по заданным ключевым словам (война, кризис и т.д.)
-
+* Дописать handle для парсинга проксей, а после закинуть их в redis
 
