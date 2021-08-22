@@ -1,0 +1,11 @@
+*.log
+*.pyc
+*.untracked
+__pycache__
+media
+.python-version 
+celerybeat-schedule.* 
+.env 
+env/ 
+.vscode/* 
+./postgres_data

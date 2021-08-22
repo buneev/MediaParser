@@ -1,3 +1,7 @@
 import os
+from dotenv import load_dotenv, find_dotenv
 
-APM_ENABLED = bool(int(os.getenv("ELASTIC_APM_ENABLED", 0)))
+load_dotenv(find_dotenv())
+
+DEBUG = bool(int(os.getenv("DEBUG", 0)))
+

@@ -14,7 +14,7 @@ HEADERS = {
 class BaseSpider(Spider):
     dest_url = f'{BLOG_URL}/article/api/'
 
-    def __init__(self):
+    def __init__(self, spider_name):
         self.articles = list()
 
     @classmethod

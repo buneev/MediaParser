@@ -17,8 +17,8 @@ async def parse(request):
     cmd = f"{path}scrapy crawl {sp_name} -o data/{sp_name}.json --logfile=data/log/{sp_name}.log"
 
     proc = await asyncio.create_subprocess_shell(cmd, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE)
+    logger.info(f'{cmd!r} Exited with {proc.returncode}')
     
-    # logger.info(f'{cmd!r} Exited with {proc.returncode}')
     # stdout, stderr = await proc.communicate()
     # text = ''
     # status = ''
@@ -31,6 +31,7 @@ async def parse(request):
     #     logger.error(f"[stderr] {text}")
     #     status = 'error'
     # return web.json_response({'success': status, 'text': text})
+    
     return web.json_response({'success': 'true'})
 
 
@@ -40,6 +41,6 @@ if __name__ == "__main__":
         web.post('/run_parse', parse)
     ])
     logging.basicConfig(level=logging.INFO, format='%(asctime)s %(name)s %(levelname)s: %(message)s', datefmt="%Y-%m-%d %H:%M:%S")
-    logger = logging.getLogger("[scrapy]")
+    logger = logging.getLogger("[aiohttp]")
     web.run_app(app, port=5858)
 
