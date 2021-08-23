@@ -1,4 +1,5 @@
 *.log
+*.json
 *.pyc
 *.untracked
 __pycache__

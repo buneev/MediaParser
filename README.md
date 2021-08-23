@@ -4,10 +4,9 @@
 Микросервис реализован на aiohttp и scrapy. Предназначен для парсинга новостных веб-ресурсов
 
 ### Запуск в docker
-1) docker build -t web_scraping_i . 
-2) docker run --name web_scraping -p 5858:5858 -d --restart=always  web_scraping_i
-or
-2) docker run --name web_scraping -p 5858:5858 -it --rm -v /home/ivan/git/MediaParser/MediaParser/src/data:/code/src/data  web_scraping_i
+1) docker build -t media_parser_i . 
+2) docker run --name media_parser -p 5858:5858 -d --restart=always  aiohttp_parser_img
+2) docker run --name media_parser -p 5858:5858 -it --rm -v /home/ivan/git/MediaParser/MediaParser/src/data:/code/src/data  smi_parser_i
 
 ### Запуск локально
 * Запуск парсинга:

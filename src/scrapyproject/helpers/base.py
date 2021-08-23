@@ -65,7 +65,7 @@ class BaseSpider(Spider):
             "text": "",
             "image": "",
             "pub_date": "",
-            "author": "",
+            "authors": [],
             "tags": [],
         }
         return result
