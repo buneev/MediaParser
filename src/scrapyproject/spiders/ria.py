@@ -19,6 +19,7 @@ ART_URL = "//a/@href"
 P_ART_BLOCK = "//div[@class='layout-article']"
 P_ART_CODE = "//@data-article-id"
 P_ART_TITLE = "//h1[@class='article__title']/text()"
+P_ART_TITLE_1 = "//div[@class='article__title']/text()"
 P_ART_TEXT = "//div[@class='article__block' and @data-type='text']"
 P_ART_IMG = "//div[@class='photoview__open']/@data-photoview-src"
 P_ART_DATE = "//div[@class='article__info-date']/a/text()"
@@ -38,6 +39,8 @@ class ParseFunc(BaseSpider):
 
     def get_title(self, article):
         title = article.xpath(P_ART_TITLE).extract_first(default='')
+        if not title:
+            title = article.xpath(P_ART_TITLE_1).extract_first(default='')
         return {"title": title}
 
     def get_text(self, article):
@@ -68,6 +71,8 @@ class RiaSpider(ParseFunc):
     }
     start_urls = [
         "https://ria.ru/",
+        'https://ria.ru/world/',
+        "https://ria.ru/politics/",
     ]
 
     def parse(self, response):
